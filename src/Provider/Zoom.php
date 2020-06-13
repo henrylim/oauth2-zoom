@@ -61,29 +61,6 @@ class Zoom extends AbstractProvider
     }
 
     /**
-     * Returns authorization parameters based on provided options.
-     *
-     * @param  array $options
-     * @return array Authorization parameters
-     */
-    protected function getAuthorizationParameters(array $options)
-    {
-        $options += [
-            'response_type'   => 'code'
-        ];
-
-        // Business code layer might set a different redirect_uri parameter
-        // depending on the context, leave it as-is
-        if (!isset($options['redirect_uri'])) {
-            $options['redirect_uri'] = $this->redirectUri;
-        }
-
-        $options['client_id'] = $this->clientId;
-
-        return $options;
-    }
-
-    /**
      * Get access token url to retrieve token
      *
      * @param  array $params
