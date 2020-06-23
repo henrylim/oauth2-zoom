@@ -140,8 +140,16 @@ class Zoom extends AbstractProvider
     protected function checkResponse(ResponseInterface $response, $data)
     {
         if ($response->getStatusCode() >= 400) {
+            if (!empty($data['reason'])) {
+                $reason = $data['reason'];
+            } elseif (!empty ($data['message'])) {
+                $reason = $data['message'];
+            } else {
+                $reason = $response->getReasonPhrase();
+            }
+
             throw new IdentityProviderException(
-                $data['message'] ?: $response->getReasonPhrase(),
+                $reason,
                 $response->getStatusCode(),
                 $response
             );
