@@ -142,7 +142,7 @@ class Zoom extends AbstractProvider
         if ($response->getStatusCode() >= 400) {
             if (!empty($data['reason'])) {
                 $reason = $data['reason'];
-            } elseif (!empty ($data['message'])) {
+            } elseif (!empty($data['message'])) {
                 $reason = $data['message'];
             } else {
                 $reason = $response->getReasonPhrase();
